@@ -6,6 +6,7 @@ import Calendar from '../components/Calendar.tsx'
 import Footer from '../components/Footer.tsx'
 import { FormData, AppointmentData } from '../types'
 import { calendarApi } from '../services/api'
+import analyticsService from '../services/analytics.service'
 
 const SchedulePage = () => {
   const location = useLocation()
@@ -21,6 +22,9 @@ const SchedulePage = () => {
   useEffect(() => {
     // Scroll al top de la página
     window.scrollTo(0, 0)
+    
+    // Track calendar view
+    analyticsService.trackCalendarView()
   }, [])
 
   useEffect(() => {
@@ -41,6 +45,20 @@ const SchedulePage = () => {
     }
     detectTimezone()
   }, [])
+  
+  // Track date selection
+  useEffect(() => {
+    if (selectedDate) {
+      analyticsService.trackDateSelection(selectedDate.toISOString())
+    }
+  }, [selectedDate])
+  
+  // Track time selection
+  useEffect(() => {
+    if (selectedTime && selectedDate) {
+      analyticsService.trackTimeSelection(selectedTime, selectedDate.toISOString())
+    }
+  }, [selectedTime, selectedDate])
 
   const handleSubmit = async () => {
     // Validar fecha y hora
@@ -75,9 +93,20 @@ const SchedulePage = () => {
       
       const result = await calendarApi.createAppointment(appointmentData)
       
+      // Track appointment booking
+      analyticsService.trackAppointmentBooked({
+        date: selectedDate.toISOString(),
+        time: selectedTime,
+        calificado: result.calificado || false,
+        meetingLink: result.meetingLink || '',
+      })
+      
       navigate('/confirmation', { 
         state: { 
-          appointmentData,
+          appointmentData: {
+            ...appointmentData,
+            calificado: result.calificado,
+          },
           meetingLink: result.meetingLink 
         } 
       })

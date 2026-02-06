@@ -1,15 +1,23 @@
 import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 // @ts-ignore - canvas-confetti doesn't have type definitions
 import confetti from 'canvas-confetti'
 import styles from './ConfirmationPage.module.css'
+import analyticsService from '../services/analytics.service'
 
 
 const ConfirmationPage = () => {
-  // appointmentData disponible si se necesita: const { appointmentData } = useLocation().state || {}
+  const location = useLocation()
+  const appointmentData = location.state?.appointmentData
 
   useEffect(() => {
     // Scroll to top
     window.scrollTo(0, 0)
+    
+    // Track confirmation view
+    if (appointmentData) {
+      analyticsService.trackConfirmationView(appointmentData.calificado || false)
+    }
     
     // Trigger confetti animation
     const duration = 1500

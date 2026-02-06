@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import calendarService from '../services/calendar.service.js'
 import emailService from '../services/email.service.js'
+import analyticsService from '../services/analytics.service.js'
 import { createOrUpdateExcel } from '../utils/excel.js'
 import { appendLeadToSheets } from '../services/sheets.service.js'
 import { qualifyLead } from '../utils/qualification.js'
@@ -61,6 +62,9 @@ router.post('/appointment', async (req, res) => {
 
     // Calcular si el lead califica
     const calificado = qualifyLead(appointmentData)
+    
+    // Obtener client_id para analytics
+    const clientId = analyticsService.getClientId(req)
 
     // Parsear fecha y hora
     const startTime = new Date(appointmentData.fecha)
@@ -115,12 +119,23 @@ router.post('/appointment', async (req, res) => {
     })
 
     // Guardar en Google Sheets
-    await appendLeadToSheets({
+    const sheetsSaved = await appendLeadToSheets({
       ...appointmentData,
       calificado,
       fechaRegistro: new Date(),
       fechaReunion: startTime,
       horaReunion: appointmentData.hora,
+    }).then(() => true).catch(() => false)
+    
+    // Track sheets saved
+    if (sheetsSaved) {
+      analyticsService.trackSheetsSaved(clientId, true)
+    }
+    
+    // Track lead qualification
+    analyticsService.trackLeadQualified(clientId, {
+      calificado,
+      ingresoMensual: appointmentData.ingresoMensual,
     })
 
     // Enviar emails (opcional - no interrumpir si falla)
@@ -130,18 +145,32 @@ router.post('/appointment', async (req, res) => {
         appointmentData.nombre,
         startTime,
         meetingLink
-      ).catch((error) => {
+      ).then((success) => {
+        analyticsService.trackEmailSent(clientId, 'confirmation', success)
+      }).catch((error) => {
         console.error('[WARNING] Error sending confirmation email:', error)
+        analyticsService.trackEmailSent(clientId, 'confirmation', false)
       }),
       emailService.sendOrganizerNotification(
         { ...appointmentData, calificado },
         startTime,
         meetingLink
-      ).catch((error) => {
+      ).then((success) => {
+        analyticsService.trackEmailSent(clientId, 'organizer', success)
+      }).catch((error) => {
         console.error('[WARNING] Error sending organizer email:', error)
+        analyticsService.trackEmailSent(clientId, 'organizer', false)
       }),
     ]).catch(() => {
       // Ignorar errores de email
+    })
+    
+    // Track appointment booked (CONVERSIÓN)
+    analyticsService.trackAppointmentBooked(clientId, {
+      leadEmail: appointmentData.email,
+      appointmentDate: startTime,
+      calificado,
+      meetingLink,
     })
 
     res.json({
