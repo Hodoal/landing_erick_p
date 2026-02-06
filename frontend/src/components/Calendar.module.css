@@ -1,0 +1,271 @@
+/* CALENDARIO MODERNO - Diseño mejorado según imagen de referencia */
+
+.calendarContainer {
+  width: 100%;
+}
+
+.calendarHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.navButton {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background-color: transparent;
+  color: #333;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-weight: 300;
+}
+
+.navButton:hover {
+  background-color: #f5f5f5;
+}
+
+.monthTitle {
+  color: #333;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  min-width: 140px;
+  text-align: center;
+}
+
+.calendarContent {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+}
+
+.calendarSection {
+  flex: 1;
+}
+
+.weekDays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.weekDay {
+  text-align: center;
+  color: #666;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.5rem;
+}
+
+.daysGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+}
+
+.emptyDay {
+  aspect-ratio: 1;
+}
+
+.day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #f5f5f5;
+  color: #333;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  min-height: 45px;
+}
+
+.day:hover:not(:disabled) {
+  background-color: #e8f8e8;
+  color: #29B529;
+}
+
+.day.today {
+  background-color: #e8f8e8;
+  font-weight: 600;
+  color: #29B529;
+}
+
+.day.selectedDay {
+  background-color: #29B529;
+  color: white;
+  font-weight: 600;
+}
+
+.day.pastDay {
+  color: #ccc;
+  cursor: not-allowed;
+  background-color: transparent;
+}
+
+.day.pastDay:hover {
+  background-color: transparent;
+  color: #ccc;
+}
+
+/* Sección de horarios a la derecha */
+.timeSlotsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 150px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.timeSlotsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.timeSlot {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #29B529;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid #e0e0e0;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.timeSlot:hover:not(:disabled) {
+  background-color: #e8f8e8;
+  border-color: #29B529;
+}
+
+.timeSlot.selectedTime {
+  background-color: white;
+  color: #29B529;
+  border-color: #29B529;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(41, 181, 41, 0.2);
+}
+
+.timeSlot:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  color: #999;
+  border-color: #e0e0e0;
+}
+
+.loading {
+  text-align: center;
+  color: #666;
+  padding: 1rem;
+  font-size: 0.875rem;
+}
+
+/* Scrollbar personalizada para horarios */
+.timeSlotsSection::-webkit-scrollbar {
+  width: 6px;
+}
+
+.timeSlotsSection::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.timeSlotsSection::-webkit-scrollbar-thumb {
+  background: #29B529;
+  border-radius: 3px;
+}
+
+.timeSlotsSection::-webkit-scrollbar-thumb:hover {
+  background: #1f8620;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .calendarContent {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .timeSlotsSection {
+    max-height: none;
+    min-width: 100%;
+    overflow-y: visible;
+  }
+
+  .timeSlotsContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .calendarHeader {
+    gap: 2rem;
+  }
+
+  .monthTitle {
+    font-size: 1rem;
+    min-width: 150px;
+  }
+
+  .navButton {
+    width: 36px;
+    height: 36px;
+  }
+
+  .day {
+    font-size: 0.85rem;
+    min-height: 40px;
+  }
+
+  .weekDay {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .daysGrid,
+  .weekDays {
+    gap: 0.25rem;
+  }
+
+  .day {
+    font-size: 0.75rem;
+    min-height: 35px;
+  }
+
+  .weekDay {
+    font-size: 0.7rem;
+    padding: 0.25rem;
+  }
+
+  .timeSlot {
+    padding: 0.625rem 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .calendarHeader {
+    gap: 1rem;
+  }
+
+  .timeSlotsContainer {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
+}

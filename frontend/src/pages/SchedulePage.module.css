@@ -1,0 +1,407 @@
+/* PIXEL-PERFECT DESIGN - Schedule Page */
+
+.pageContainer {
+  min-height: 100vh;
+  background: url('/fondo0.png') center/cover no-repeat;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  animation: fadeIn 0.6s ease;
+}
+
+.pageContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.3)
+  ), rgba(41, 181, 41, 0.1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Logo en esquina superior */
+.logoHeader {
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.logoText {
+  font-family: 'Brush Script MT', 'Dancing Script', cursive;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: white;
+  font-weight: 400;
+  font-style: italic;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+}
+
+.logoAds {
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: 300;
+}
+
+/* Título principal grande */
+.mainTitle {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  color: #39ff14;
+  text-align: center;
+  margin: 5rem 0 2rem 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 20px rgba(57, 255, 20, 0.5);
+  animation: slideDown 0.6s ease;
+}
+
+/* Barra de progreso */
+.progressBarContainer {
+  width: 100%;
+  max-width: 800px;
+  height: 50px;
+  background: linear-gradient(90deg, #555 0%, #333 100%);
+  border-radius: 25px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.progressBar {
+  height: 100%;
+  background: linear-gradient(90deg, #00ff00 0%, #39ff14 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.8s ease;
+  position: relative;
+}
+
+.progressBar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+  animation: shimmer 2s infinite;
+}
+
+.progressText {
+  color: #0a0a0a;
+  font-weight: 800;
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+/* Subtítulo */
+.subtitle {
+  color: #cccccc;
+  font-size: clamp(0.9rem, 1.8vw, 1.125rem);
+  text-align: center;
+  max-width: 700px;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+}
+
+.highlightGreen {
+  color: #39ff14;
+  font-weight: 700;
+}
+
+/* Tarjeta blanca principal */
+.whiteCard {
+  background-color: white;
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 1200px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  position: relative;
+  z-index: 1;
+  animation: slideUp 0.8s ease;
+  margin-bottom: 3rem;
+}
+
+/* Layout de dos columnas */
+.cardLayout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 3rem;
+}
+
+/* Columna izquierda */
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-right: 2rem;
+  border-right: 1px solid #e0e0e0;
+}
+
+/* Columna derecha */
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Info del header de la tarjeta */
+.cardInfo {
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.cardTitle {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.infoRow {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+/* Descripción */
+.descriptionSection {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.descTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.descText {
+  color: #666;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+/* Calendario */
+.calendarWrapper {
+  margin-top: 0;
+}
+
+.calendarTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Zona horaria */
+.timezoneSection {
+  margin-top: 1.5rem;
+}
+
+.timezoneLabel {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.timezoneWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.timezoneSelect {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #333;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.timezoneSelect:hover,
+.timezoneSelect:focus {
+  border-color: #39ff14;
+  outline: none;
+}
+
+/* Botón de agendar */
+.scheduleButtonSection {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: center;
+}
+
+.scheduleButton {
+  background: linear-gradient(135deg, #29B529 0%, #39ff14 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1.125rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(41, 181, 41, 0.3);
+}
+
+.scheduleButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(41, 181, 41, 0.4);
+}
+
+.scheduleButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Footer */
+.footer {
+  background-color: rgba(128, 128, 128, 0.3);
+  width: 100%;
+  padding: 1.5rem;
+  text-align: center;
+  margin-top: auto;
+}
+
+.footerText {
+  color: white;
+  font-weight: 700;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.footerCopyright {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.75rem;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .pageContainer {
+    padding: 1rem 0.75rem;
+  }
+
+  .logoHeader {
+    top: 1rem;
+  }
+
+  .mainTitle {
+    margin-top: 4rem;
+    font-size: 1.75rem;
+  }
+
+  .whiteCard {
+    padding: 1.5rem;
+  }
+
+  .cardLayout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .leftColumn {
+    padding-right: 0;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 1.5rem;
+  }
+
+  .progressBarContainer {
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainTitle {
+    font-size: 1.5rem;
+  }
+
+  .whiteCard {
+    padding: 1rem;
+  }
+
+  .cardLayout {
+    gap: 1rem;
+  }
+
+  .leftColumn {
+    padding-bottom: 1rem;
+  }
+}

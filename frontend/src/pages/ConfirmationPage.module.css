@@ -1,0 +1,274 @@
+.confirmationPage {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-bg-dark);
+}
+
+.topBanner {
+  background-color: #29B529;
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-align: center;
+  position: relative;
+  z-index: 100;
+}
+
+.topBanner p {
+  color: var(--color-text-white);
+  font-weight: 600;
+  font-size: clamp(0.875rem, 2vw, 1.125rem);
+  margin: 0;
+}
+
+.highlight {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.background {
+  flex: 1;
+  background: url('/fondo1.png') center/cover no-repeat;
+  padding: 1rem 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.3)
+  ), rgba(41, 181, 41, 0.1);
+  pointer-events: none;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  animation: fadeIn 0.6s ease;
+}
+
+.logoSection {
+  margin-bottom: 0.25rem;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logoText {
+  font-family: 'Brush Script MT', cursive;
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  color: var(--color-text-white);
+  font-style: italic;
+  line-height: 1;
+}
+
+.logoSubtext {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  color: var(--color-text-white);
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+.title {
+  text-align: center;
+  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+  font-weight: 700;
+  margin: 0;
+}
+
+.greenText {
+  color: var(--color-primary-green);
+}
+
+.subtitle {
+  text-align: center;
+  font-size: clamp(1rem, 1.75vw, 1.15rem);
+  color: var(--color-text-white);
+  line-height: 1.4;
+  max-width: 700px;
+  margin: 0;
+}
+
+.highlight {
+  color: var(--color-text-white);
+  font-weight: 700;
+}
+
+.videoSection {
+  width: 100%;
+  max-width: 560px;
+  margin: 0.75rem 0;
+}
+
+.videoPlaceholder {
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.youtubeVideo {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-lg);
+}
+
+.ringLight {
+  width: 180px;
+  height: 180px;
+  border: 10px solid var(--color-primary-green);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 30px rgba(0, 255, 0, 0.6),
+    inset 0 0 30px rgba(0, 255, 0, 0.4);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.whatsappCard {
+  background: linear-gradient(135deg, rgba(0, 255, 0, 0.1) 0%, rgba(0, 200, 0, 0.05) 100%);
+  border: 2px dashed var(--color-primary-green);
+  border-radius: var(--radius-xl);
+  padding: 1rem;
+  max-width: 650px;
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  animation: glow 3s ease-in-out infinite;
+}
+
+.whatsappIcon {
+  color: var(--color-primary-green);
+  flex-shrink: 0;
+  min-width: 56px;
+}
+
+.whatsappContent {
+  flex: 1;
+}
+
+.whatsappTitle {
+  color: var(--color-primary-green);
+  font-size: clamp(1.1rem, 2.25vw, 1.4rem);
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  text-transform: uppercase;
+}
+
+.whatsappText {
+  color: var(--color-text-white);
+  font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.zoom {
+  color: var(--color-primary-green);
+  font-weight: 700;
+}
+
+.bold {
+  font-weight: 700;
+  color: var(--color-text-white);
+}
+
+.meetingLink {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  padding: 0.5rem 0.75rem;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.meetingLinkLabel {
+  color: var(--color-text-gray);
+  font-size: 0.85rem;
+  margin-bottom: 0.35rem;
+  margin: 0;
+}
+
+.meetingLinkUrl {
+  color: var(--color-primary-green);
+  font-weight: 600;
+  word-break: break-all;
+  text-decoration: underline;
+  transition: color var(--transition-normal);
+  font-size: 0.9rem;
+}
+
+.meetingLinkUrl:hover {
+  color: var(--color-bright-green);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .background {
+    padding: var(--spacing-lg) 0;
+  }
+
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .whatsappCard {
+    flex-direction: column;
+    padding: var(--spacing-lg);
+    text-align: center;
+  }
+
+  .content {
+    gap: var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .whatsappCard {
+    padding: var(--spacing-md);
+  }
+
+  .whatsappIcon svg {
+    width: 36px;
+    height: 36px;
+  }
+}

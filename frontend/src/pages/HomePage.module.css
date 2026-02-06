@@ -1,0 +1,202 @@
+.homePage {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-bg-dark);
+  position: relative;
+}
+
+.topBanner {
+  background-color: #29B529;
+  padding: var(--spacing-xs) var(--spacing-md);
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.topBanner p {
+  color: var(--color-text-white);
+  font-weight: 600;
+  font-size: clamp(0.875rem, 2vw, 1.125rem);
+  margin: 0;
+}
+
+.highlight {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-lg) var(--spacing-md);
+  padding-top: calc(var(--spacing-lg) + 60px);
+  flex: 1;
+}
+
+.heroSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.mainHeading {
+  text-align: center;
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: var(--spacing-lg);
+  max-width: 1200px;
+  font-size: clamp(1.30rem, 2.5vw, 1.80rem);
+}
+
+/* Por defecto los spans son inline para permitir combinarlos en la misma línea */
+.mainHeading span {
+  display: inline;
+}
+
+/* Usar .lineBreak en el span que deba forzar un salto */
+.lineBreak {
+  display: block;
+}
+
+.greenText {
+  color: var(--color-primary-green);
+  font-style: italic;
+}
+
+.whiteText {
+  color: var(--color-text-white);
+}
+
+.stepSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: -1rem;
+}
+
+.stepTitle,
+.stepTwoTitle {
+  text-align: center;
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 600;
+}
+
+.stepLabel {
+  color: var(--color-primary-green);
+}
+
+.videoContainer {
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 16 / 9;
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-green);
+  position: relative;
+}
+
+.videoPlayer {
+  border-radius: var(--radius-lg);
+}
+
+.viewerCount {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(10px);
+}
+
+.viewerIcon {
+  font-size: 1.25rem;
+}
+
+.viewerNumber {
+  color: var(--color-primary-green);
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+.viewerText {
+  color: var(--color-text-gray);
+  font-size: 0.875rem;
+}
+
+.stepTwo {
+  text-align: center;
+  margin-top: var(--spacing-lg);
+}
+
+.stepTwoTitle {
+  margin-bottom: var(--spacing-xs);
+}
+
+.stepTwoSubtitle {
+  color: var(--color-primary-green);
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-style: italic;
+}
+
+.formSection {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: var(--color-text-white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 500px;
+  overflow-y: auto;
+  
+  /* Ocultar barra de scroll */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer y Edge */
+}
+
+.formSection::-webkit-scrollbar {
+  display: none; /* Safari y Chrome */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+
+  .heroSection {
+    gap: var(--spacing-lg);
+  }
+
+  .mainHeading {
+    font-size: 1.5rem;
+  }
+
+  .videoContainer {
+    border-radius: var(--radius-md);
+  }
+
+  .topBanner {
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .viewerCount {
+    font-size: 0.875rem;
+    padding: 0.375rem var(--spacing-sm);
+  }
+
+  .stepSection {
+    gap: var(--spacing-sm);
+  }
+}
